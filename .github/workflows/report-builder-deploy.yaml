@@ -14,8 +14,7 @@ jobs:
       - name: Make script executable
         run: chmod +x ./deploy.sh
 
-      - name: Run Deploy Script with Custom Shell
-        shell: /usr/bin/bash {0}
+      - name: Run Deploy Script
         run: ./deploy.sh
         env:
           CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
