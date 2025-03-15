@@ -1,4 +1,4 @@
-name: Deploy with Secrets
+name: Deploy with Secrets with env
 
 on:
   workflow_dispatch:
