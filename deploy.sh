@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "Done"
 
 gcloud run deploy blinkmetrics-report-builder \
     --source . \
