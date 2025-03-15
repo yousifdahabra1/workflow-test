@@ -1,10 +1,10 @@
-name: Run Script with Multiple Secrets
+name: Deploy with Secrets
 
 on:
   workflow_dispatch:
 
 jobs:
-  run-script:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,8 +14,8 @@ jobs:
       - name: Make script executable
         run: chmod +x ./deploy.sh
 
-      - name: Run script with secrets
-        run:  ./deploy.sh
+      - name: Run Deploy Script
+        run: ./deploy.sh
         env:
           CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
