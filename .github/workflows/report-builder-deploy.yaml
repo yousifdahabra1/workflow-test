@@ -1,4 +1,4 @@
-name: Deploy with Secrets
+name: Deploy to Google Cloud Run
 
 on:
   workflow_dispatch:
@@ -11,10 +11,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Authenticate with GCP
+        run: |
+          echo "${{ secrets.GCP_SA_KEY }}" > gcp-key.json
+          gcloud auth activate-service-account --key-file=gcp-key.json
+
+      - name: Set GCP Project
+        run: |
+          gcloud config set project ${{ secrets.PROJECT }}
+
       - name: Make script executable
         run: chmod +x ./deploy.sh
 
-      - name: Run Deploy Script
+      - name: Run deployment script
         run: ./deploy.sh
         env:
           CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
