@@ -2,7 +2,7 @@
 
 echo "Done"
 
-gcloud run deploy blinkmetrics-report-builder \
+gcloud run deploy my-service \
     --source . \
     --region us-central1 \
     --project=$PROJECT \
