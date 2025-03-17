@@ -13,7 +13,7 @@ jobs:
 
       - name: Authenticate with Google Cloud
         run: |
-          echo "${{ secrets.GCP_SA_KEY_BASE64 }}" | base64 -d > gcp-key.json
+          echo "${{ secrets.GCP_SA_KEY }}" | base64 -d > gcp-key.json
           ls -l gcp-key.json
           cat gcp-key.json || true
           gcloud auth activate-service-account --key-file=gcp-key.json
