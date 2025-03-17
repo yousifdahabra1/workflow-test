@@ -1,4 +1,4 @@
-name: Deploy with Secrets with env
+name: Deploy to Cloud Run
 
 on:
   workflow_dispatch:
@@ -11,12 +11,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Make script executable
-        run: chmod +x ./external/report-builder/deploy.sh
+      - name: Authenticate with Google Cloud
+        run: |
+          echo "${{ secrets.GCP_SA_KEY }}" > gcp-key.json
+          gcloud auth activate-service-account --key-file=gcp-key.json
+          gcloud config set project ${{ secrets.PROJECT_ID }}
 
-      - name: Run Deploy Script
-        run: ./external/report-builder/deploy.sh
+      - name: modify PRIVATE_KEY newlines
+        run: |
+          echo -e "${{ secrets.PRIVATE_KEY }}" > private-key.json
+          export PRIVATE_KEY=$(cat private-key.json)
+
+      - name: Make script executable
+        run: chmod +x ./deploy.sh
+
+      - name: Run deploy script
+        run: ./deploy.sh
         env:
-            CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
-            PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-            PROJECT: ${{ secrets.PROJECT }}  
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
+          PROJECT: ${{ secrets.PROJECT_ID }}
+          PRIVATE_KEY: $PRIVATE_KEY
