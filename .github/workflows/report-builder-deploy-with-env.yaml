@@ -1,4 +1,4 @@
-name: Deploy to Cloud Run
+name: Deploy with Secrets 
 
 on:
   workflow_dispatch:
@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        
+
       - name: Debug Secrets
         run: |
           echo "PROJECT_ID = ${{ secrets.PROJECT_ID }}"
