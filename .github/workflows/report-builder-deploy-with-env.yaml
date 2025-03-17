@@ -15,7 +15,7 @@ jobs:
         run: |
           echo "${{ secrets.GCP_SA_KEY }}" > gcp-key.json
           gcloud auth activate-service-account --key-file=gcp-key.json
-          gcloud config set project ${{ secrets.PROJECT_ID }}
+          gcloud config set project ${{ secrets.PROJECT }}
 
       - name: modify PRIVATE_KEY newlines
         run: |
