@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "deploying to Google Cloud Run..."
+echo "Using PROJECT=$PROJECT"
 
 gcloud run deploy my-service \
     --source . \
