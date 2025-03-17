@@ -10,6 +10,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        
+      - name: Debug Secrets
+        run: |
+          echo "PROJECT_ID = ${{ secrets.PROJECT_ID }}"
 
       - name: Authenticate with Google Cloud
         run: |
@@ -30,5 +34,5 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
-          PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          PROJECT: ${{ secrets.PROJECT_ID }}
           PRIVATE_KEY: $PRIVATE_KEY
