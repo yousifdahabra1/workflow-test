@@ -28,7 +28,7 @@ jobs:
         run: chmod +x ./deploy.sh
 
       - name: Run deploy script
-        run: ./deploy.sh
+        run: external/report-builder/deploy.sh
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
