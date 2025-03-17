@@ -1,4 +1,4 @@
-name: Deploy with Secrets 
+name: Deploy with Secrets
 
 on:
   workflow_dispatch:
@@ -13,11 +13,13 @@ jobs:
 
       - name: Authenticate with Google Cloud
         run: |
-          printf "%s" "${{ secrets.GCP_SA_KEY }}" > gcp-key.json
+          echo "${{ secrets.GCP_SA_KEY_BASE64 }}" | base64 -d > gcp-key.json
+          ls -l gcp-key.json
+          cat gcp-key.json || true
           gcloud auth activate-service-account --key-file=gcp-key.json
           gcloud config set project ${{ secrets.PROJECT_ID }}
-            
-      - name: modify PRIVATE_KEY newlines
+
+      - name: Fix PRIVATE_KEY newlines
         run: |
           echo -e "${{ secrets.PRIVATE_KEY }}" > private-key.json
           export PRIVATE_KEY=$(cat private-key.json)
