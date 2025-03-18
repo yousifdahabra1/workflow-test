@@ -19,6 +19,10 @@ jobs:
           gcloud auth activate-service-account --key-file=gcp-key.json
           gcloud config set project ${{ secrets.PROJECT_ID }}
 
+      - name: Fix PRIVATE_KEY newlines
+        run: |
+          echo -e "${{ secrets.PRIVATE_KEY }}" > private-key.json
+          export PRIVATE_KEY=$(cat private-key.json)
 
       - name: Make script executable
         run: chmod +x external/report-builder/deploy.sh
