@@ -1,6 +1,8 @@
 #!/bin/bash
 
-echo "deploying to Google Cloud Run..."
+set -e
+
+echo "Deploying to Google Cloud Run..."
 echo "Using PROJECT=$PROJECT"
 
 gcloud run deploy my-service \
@@ -15,6 +17,5 @@ gcloud run deploy my-service \
     --memory 12Gi \
     --cpu 4 \
     --service-account=service-workflow-test@test-cloud-453720.iam.gserviceaccount.com \
-    --set-env-vars=GH_TOKEN="$GH_TOKEN",CLIENT_EMAIL="$CLIENT_EMAIL",PROJECT_ID="$PROJECT",PRIVATE_KEY="$PRIVATE_KEY"
-
-echo "deployment successful!"
+    --set-env-vars=GH_TOKEN="$GH_TOKEN",CLIENT_EMAIL="$CLIENT_EMAIL",PROJECT_ID="$PROJECT",PRIVATE_KEY="$PRIVATE_KEY" \
+    --platform managed
