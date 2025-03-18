@@ -8,9 +8,8 @@ echo "Using PROJECT=$PROJECT"
 cd "$(dirname "$0")"
 
 # Build the Docker image from the Dockerfile
-gcloud builds submit \
-  --tag gcr.io/$PROJECT/my-service \
-  --source .  
+gcloud builds submit . \
+  --tag gcr.io/$PROJECT/my-service
 
 # Deploy the container to Cloud Run
 gcloud run deploy my-service \
