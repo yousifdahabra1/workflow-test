@@ -1,0 +1,15 @@
+{
+    "name": "builder",
+    "version": "1.0.0",
+    "description": "Docker container that listens to web requests and passes params to a bash script",
+    "main": "app.js",
+    "scripts": {
+      "start": "node app.js"
+    },
+    "author": "Your Name",
+    "license": "MIT",
+    "dependencies": {
+      "express": "^4.18.2"
+    }
+  }
+  
