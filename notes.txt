@@ -1,9 +1,8 @@
-convert account service json  to base 64 before use it 
-enable Cloud Resource Manager API on google console
+Convert service account JSON to Base64 before using it.
+Enable Cloud Resource Manager API on Google Console.
+Add the following roles to the service account:
 
-Click "Edit" → Add the following roles: 
- Cloud Run Admin – To deploy to Cloud Run
- Cloud Build Editor – To use Cloud Build
- Artifact Registry Reader – To pull images from Artifact Registry
- Service Account User – To allow the service account to act on behalf of other services
-
+Cloud Run Admin – To deploy to Cloud Run
+Cloud Build Editor – To use Cloud Build
+Artifact Registry Reader – To pull images from Artifact Registry
+Service Account User – To allow the service account to act on behalf of other services

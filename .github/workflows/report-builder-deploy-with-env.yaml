@@ -13,9 +13,7 @@ jobs:
 
       - name: Authenticate with Google Cloud
         run: |
-          echo "${{ secrets.GCP_SA_KEY }}" | base64 -d > gcp-key.json
-          ls -l gcp-key.json
-          cat gcp-key.json || true
+          echo "${{ secrets.GCP_SA_KEY_BASE64 }}" | base64 -d > gcp-key.json
           gcloud auth activate-service-account --key-file=gcp-key.json
           gcloud config set project ${{ secrets.PROJECT_ID }}
 
@@ -28,7 +26,7 @@ jobs:
         run: chmod +x external/report-builder/deploy.sh
 
       - name: Run deploy script
-        run: external/report-builder/deploy.sh
+        run: ./external/report-builder/deploy.sh
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
