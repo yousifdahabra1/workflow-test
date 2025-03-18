@@ -1,18 +1,20 @@
-# Use official Node.js image
+# Use the official Node.js image
 FROM node:20
 
-# Set working directory
+# Set the working directory in the container
 WORKDIR /app
 
-# Install dependencies
+# Copy package.json and package-lock.json (if available)
 COPY package*.json ./
-RUN npm install
 
-# Copy app source code
+# Install dependencies
+RUN npm install --production
+
+# Copy the rest of the app's source code
 COPY . .
 
-# Expose port
+# Expose the port Cloud Run will use
 EXPOSE 8080
 
-# Start app
-CMD ["node", "index.js"]
+# Start the app using the start script from package.json
+CMD ["npm", "start"]
