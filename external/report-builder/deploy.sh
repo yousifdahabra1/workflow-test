@@ -5,11 +5,8 @@ echo "Using PROJECT=$PROJECT"
 
 cd "$(dirname "$0")"
 
-gcloud builds submit . \
-  --tag gcr.io/$PROJECT/my-service
-
 gcloud run deploy my-service \
-  --image gcr.io/$PROJECT/my-service \
+  --source . \
   --region us-central1 \
   --project=$PROJECT \
   --allow-unauthenticated \
