@@ -1,7 +1,7 @@
-# Use the official Node.js image
+# Use Node.js image
 FROM node:20
 
-# Set the working directory in the container
+# Set the directory
 WORKDIR /app
 
 # Copy package.json and package-lock.json (if available)

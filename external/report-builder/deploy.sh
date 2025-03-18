@@ -1,17 +1,13 @@
 #!/bin/bash
 
-set -e  # Exit on error
-
 echo "Deploying to Google Cloud Run..."
 echo "Using PROJECT=$PROJECT"
 
 cd "$(dirname "$0")"
 
-# Build the Docker image from the Dockerfile
 gcloud builds submit . \
   --tag gcr.io/$PROJECT/my-service
 
-# Deploy the container to Cloud Run
 gcloud run deploy my-service \
   --image gcr.io/$PROJECT/my-service \
   --region us-central1 \
