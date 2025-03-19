@@ -14,7 +14,7 @@ jobs:
       - name: Authenticate with Google Cloud
         uses: "google-github-actions/auth@v1"
         with:
-          service_account: "service-workflow-test@test-cloud-453720.iam.gserviceaccount.com"
+          service_account: ${{ secrets.CLIENT_EMAIL }}
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
       - name: Fix PRIVATE_KEY newlines
