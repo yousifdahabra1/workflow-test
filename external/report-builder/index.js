@@ -4,7 +4,7 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 app.get('/', (req, res) => {
-  res.send('Hello from blinkmetrics-report-builder!');
+  res.send('Hello from blinkmetrics-report-builder v2!');
 });
 
 app.listen(port, () => {
